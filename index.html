@@ -1,0 +1,56 @@
+<!doctype HTML>
+<html`enter code here` lang="en">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>
+Fabric price calculator
+</title>
+<head>
+<style>
+body {
+font-family: sans-serif;
+color: black;
+}
+input[type="text"] {
+   color: black;
+}
+
+</style>
+</head>
+<body>
+<h2>Fabric price calculator</h2>
+<form role="form" id="price" name="price">
+<p>Select fabric type:</p>
+<select class="" id="itemselect" onchange="calculate()">
+<option id="itemprice" value="1.500">Cotton @ £1.50 / sq. m</option>
+<option id="itemprice" value="1.250">Denim @ £1.25 / sq. m</option>
+<option id="itemprice" value="3.000">Wool @ £3.00 / sq. m</option>
+<option id="itemprice" value="6.000">Silk @ £6.00 / sq. m</option>
+<option id="itemprice" value="4.000">Leather @ £4.00 / sq. m</option>
+<option id="itemprice" value="5.000">Nylon @ £5.00 / sq. m</option>
+</select>
+<p>Enter length and width of fabric:</p>
+<p><input type="number" id="qty" onchange="calculate()" value="" placeholder="Length (m)"></p>
+<p><input type="number" id="qtya" onchange="calculate()" value="" placeholder="Width (m)"></p>
+<p>Total price of fabric:</p>
+<p><input type="text" id="result" value="" readonly="readonly"></p>
+</form>
+
+<script type="text/javascript">
+function calculate(price){
+var item = document.getElementById("itemselect").value || 0;
+var qty = document.getElementById("qty").value || 0;
+var qtya = document.getElementById("qtya").value || 0;
+
+item = parseFloat(item).toFixed(2);
+qty = parseFloat(qty).toFixed(2);
+qtya = parseFloat(qtya).toFixed(2);
+
+var result = parseFloat(item*qty*qtya).toFixed(2);
+
+document.getElementById("result").value="£"+result;
+}
+</script>
+</body>
+</html>
