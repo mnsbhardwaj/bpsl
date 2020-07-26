@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficiation-Manish</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar background h-nav-res">
+        <ul class="navlist v-class-res">
+            <div class="logo">
+                <img src="img/logo.jpg" alt="bpsl">
+                <img src="img/logo1.png" alt="manish">
+            </div>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#calculation">Calculation</a></li>
+            <li><a href="#team">My Team</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <div class="rightnav v-class-res">
+            <input type="text" name="search" id="search">
+            <button class="btn btn-sm">Search</button>
+        </div>
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+    <section id="home" class="background firstsection">
+        <div class="mainbox">
+            <div class="firstm">
+                <p class="bigtext">OUR BENEFICIATION PLANT</p>
+                <p class="smltext">Beneficiation is a technology for agglomeration of low grade iron ore fines into
+                    useful material for pellet plant. A process adapt to up grade ore is called Beneficiation. The good
+                    quality iron ore is fast depleting thereby forcing the iron makers to use beneficiation. </p>
+                <div class="buttonm">
+                    <button class="btn">Detail</button>
+                    <button class="btn">Watch Video</button>
+                </div>
+            </div>
+            <div class="secondm">
+                <img src="img/main.png" alt="plant">
+            </div>
+        </div>
+    </section>
+    <br>
+    <section id="calculation" class="section">
+        <div class="para1">
+            <p class="bigtext">My Calculation</p>
+            <p class="smltext subline">These are some basic mineral processing calculation, which is categorizes in
+                three parts below. Specific gravity of Iron Ore and pellets varies according to its grade and
+                geo-locations. So enter these value as per your location and grade.</p>
+        </div>
+        <div class="tumbnil">
+            <img src="https://source.unsplash.com/900x900/?calculation,math" alt="calculation">
+        </div>
+    </section>
+    <hr>
+    <section class="calculator">
+        <div class="para2">
+            <button class="accordion">STOCK-PILE CALCULATOR</button>
+            <div class="panel">
+                <h3>Pellet Angle of repose is 26 to a max. of 32 deg. & bulk density is 1.8 - 2.2 MT/M³</h3>
+                <div class="section left">
+                    <div class="para2">
+                        <form id="frm1">
+                            <table class="center1" style="display: inline-table;min-width:295px">
+                                <tbody>
+                                    <tr>
+                                        <td>Stockpile End Type</td>
+                                        <td><select class="" id="type" onchange="calculate_stp()">
+                                                <option id="pile" value="1.33333">A-Type</option>
+                                                <option id="pile" value="1.04762">B-Type</option>
+                                                <option id="pile" value="0">None</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Specific Wgt (g/cc)</td>
+                                        <td><input id="swgt" type="text" size="4" value=""> g/cc</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Top Width (wt)</td>
+                                        <td><input id="wt" type="text" size="4" value=""> m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Base Width (w)</td>
+                                        <td><input id="w" type="text" size="4" value="" onchange="calculate_h()"> m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Length (L)</td>
+                                        <td><input id="l" type="text" size="4" value=""> m</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <h5>Input 1 Of the following (Angle, Height)</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Angle of Repose θ</td>
+                                        <td><input id="ang" type="text" size="4" value="" onchange="calculate_h()">°d
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Measured Height (h)</td>
+                                        <td><input id="h" type="text" size="4" value="" onchange="calculate_h()"> m</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Calculated Height (h)</td>
+                                        <td><input id="ch" type="text" size="4" readonly="readonly"> m</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center" colspan="2"><input type="button" value="Calculate"
+                                                onclick="calculate_stp()"> <input type="button" onclick="formReset()"
+                                                value="Reset"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <h4 class="subhead">Results:</h4>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="formResults">
+                                            <table class="formResults">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Section Type</td>
+                                                        <td>Volume M³</td>
+                                                        <td>Tonnage MT</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Base Stockpile</td>
+                                                        <td><input id="basev" type="text" size="4" readonly="readonly">
+                                                            M³</td>
+                                                        <td><input id="baset" type="text" size="4" readonly="readonly">
+                                                            MT</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>+2 end section</td>
+                                                        <td><input id="endv" type="text" size="4" readonly="readonly">
+                                                            M³</td>
+                                                        <td><input id="endt" type="text" size="4" readonly="readonly">
+                                                            MT</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total</td>
+                                                        <td><input id="totalv" type="text" size="4" readonly="readonly">
+                                                            M³</td>
+                                                        <td><input id="totalt" type="text" size="4" readonly="readonly">
+                                                            MT</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="tumbnil1">
+                        <img src="img/1.png" alt="stockpile">
+                        <img src="img/2.png" alt="stockpile">
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore
+                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                    ea commodo
+                    consequat.</p>
+            </div>
+            <button class="accordion">Mineral Process Calculation</button>
+            <div class="panel">
+                <h3>Iron Ore Fines Specific gravity is 3.7 to 4.3 & bulk density is 1.8 - 2.2 MT/M³</h3>
+                <section class="section rever">
+                    <div class="mineral">
+                        <div class="tumbnil">
+                            <img src="img/f1.PNG" alt="manish_calculation1">
+                        </div>
+                        <form id="frm2_1">
+                            <table class="center1" style="display: inline-table;min-width:295px;color: white;">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2" style="background-color: blue;">
+                                            Enter flow for Tonnage TPH
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="background-color: blue;">
+                                            Iron ore fines sg - 3.7 to 4.2
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="background-color: blue;">
+                                            Tailing sg is below 3.7
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Specific gravity - s</td>
+                                        <td><input id="f21s" type="text" size="4" value="4" onchange="calculate_f21()">
+                                            g/cc</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Slurry Density - sl</td>
+                                        <td><input id="f21sl" type="text" size="4" value="" onchange="calculate_f21()">
+                                            g/cc</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Slurry Flow - F</td>
+                                        <td><input id="f21f" type="text" size="4" value="" onchange="calculate_f21()">
+                                            m³/hr</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center" colspan="2"><input type="button" onclick="formReset21()"
+                                                value="Reset"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="background-color: rgb(0, 255, 0);color: rgb(0, 0, 138);">
+                                            % of Solid and Tonnage-TPH
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="formResults1">
+                                            <table class="formResults1">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>% of solid</td>
+                                                        <td><input id="f21ps" type="text" size="4" readonly="readonly">
+                                                            %</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tonnage-TPH</td>
+                                                        <td><input id="f21tph" type="text" size="4" readonly="readonly">
+                                                            TPH</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="mineral">
+                        <div class="tumbnil">
+                            <img src="img/f2.PNG" alt="manish_calculation2">
+                        </div>
+                        <form id="frm2_2">
+                            <table class="center1" style="display: inline-table;min-width:295px;color: white;">
+                                <tbody>
+                                    <tr style="background-color: blue;">
+                                        <td id="f22ch">Choose Result - F</td>
+                                        <td><select class="" id="f22cho" onchange="selection22()">
+                                                <option id="mixslurry" value="F">Mix Slurry Flow</option>
+                                                <option id="mixslurry" value="F1">Slurry-1 Flow</option>
+                                                <option id="mixslurry" value="F2">Slurry-2 Flow</option>
+                                                <option id="mixslurry" value="D">Mix Slurry Density</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Slurry-1 Density - s1</td>
+                                        <td><input id="f22d1" type="text" size="4" value="">
+                                            g/cc</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Slurry-2 Density - s2</td>
+                                        <td><input id="f22d2" type="text" size="4" value="">
+                                            g/cc</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mix Slurry Density - s</td>
+                                        <td><input id="f22d" type="text" size="4" value="">
+                                            g/cc</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Slurry-1 Flow - F1</td>
+                                        <td><input id="f22f1" type="text" size="4" value="" onchange="hide_f()">
+                                            m³/hr</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Slurry-2 Flow - F2</td>
+                                        <td><input id="f22f2" type="text" size="4" value="" onchange="hide_f()">
+                                            m³/hr</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mix Slurry Flow - F</td>
+                                        <td><input id="f22f" type="text" size="4" value="" readonly="readonly">
+                                            m³/hr</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center" colspan="2"><input type="button" value="Calculate"
+                                                onclick="calculate_f22()"><input type="button" onclick="formReset22()"
+                                                value="Reset"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="background-color: rgb(0, 255, 0);color: rgb(0, 0, 138);">
+                                            Flow of slurry or Result Density
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="formResults1">
+                                            <table class="formResults1">
+                                                <tbody>
+                                                    <tr>
+                                                        <td id="f22result_t">Flow of Slurry - F</td>
+                                                        <td><input id="f22result_v" type="text" size="4"
+                                                                readonly="readonly">
+                                                            <span id="f22result_u">m³/hr</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="mineral">
+                        <div class="tumbnil">
+                            <img src="img/f3.PNG" alt="manish_calculation3">
+                        </div>
+                        <form id="frm2_3">
+                            <table class="center1" style="display: inline-table;min-width:295px;color: white;">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2" style="background-color: blue;">
+                                            Enter % of FeT for Feed, Conc & Tail
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="background-color: blue;">
+                                            Conc. above 62%, Tailing below 57%
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Feed FeT - f</td>
+                                        <td><input id="f23f" type="text" size="4" value="60" onchange="calculate_f23()">
+                                            %</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Conc. FeT - c</td>
+                                        <td><input id="f23c" type="text" size="4" value="63" onchange="calculate_f23()">
+                                            %</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tail. FeT - t</td>
+                                        <td><input id="f23t" type="text" size="4" value="57" onchange="calculate_f23()">
+                                            %</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Feed Tonnage - F</td>
+                                        <td><input id="f23ft" type="text" size="4" value="" onchange="calculate_f23()">
+                                            TPH</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center" colspan="2"><input type="button" onclick="formReset23()"
+                                                value="Reset"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="background-color: rgb(0, 255, 0);color: rgb(0, 0, 138);">
+                                            Concentrate and Tailing Tonnage
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="formResults1">
+                                            <table class="formResults1">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Conc. Tonnage - C</td>
+                                                        <td><input id="f23ct" type="text" size="4" readonly="readonly">
+                                                            TPH</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tail. Tonnage - T</td>
+                                                        <td><input id="f23tt" type="text" size="4" readonly="readonly">
+                                                            TPH</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </section>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore
+                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                    ea commodo
+                    consequat.</p>
+            </div>
+            <button class="accordion">Raw Material Blending</button>
+            <div class="panel">
+                <h3>Pellet Angle of repose is 26 to a max. of 32 deg. & bulk density is 1.8 - 2.2 MT/M³</h3>
+                <div class="section left">
+                    <div class="para2">
+                        <form id="frm3">
+                            <table class="center1" style="display: inline-table;min-width:295px; font-size: 13px;">
+                                <tbody>
+                                    <tr style="background-color: rgb(3, 3, 95);color: white; font-size: 18px;">
+                                        <td colspan="6">
+                                            Please Enter First Total Feed Tonnage - F (TPH)</td>
+                                    </tr>
+                                    <tr style="background-color: rgb(3, 3, 95);color: white;">
+                                        <td>Feed - F</td>
+                                        <td colspan="5">
+                                            <input id="f3tph" type="number" size="5" value=""
+                                                onchange="calculate_f3(); ratio();">TPH</td>
+                                    </tr>
+                                    <tr style="background-color: rgb(77, 77, 77);color: white;">
+                                        <td>Material</td>
+                                        <td>
+                                            <select class="blend_select">
+                                                <option id="pa" value="">HG</option>
+                                                <option id="pa" value="">MG</option>
+                                                <option id="pa" value="">LG</option>
+                                                <option id="pa" value="">Other</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="blend_select">
+                                                <option id="pb" value="">HG</option>
+                                                <option id="pb" value="">MG</option>
+                                                <option id="pb" value="">LG</option>
+                                                <option id="pb" value="">Other</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="blend_select">
+                                                <option id="pc" value="">HG</option>
+                                                <option id="pc" value="">MG</option>
+                                                <option id="pc" value="">LG</option>
+                                                <option id="pc" value="">Other</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="blend_select">
+                                                <option id="pd" value="">HG</option>
+                                                <option id="pd" value="">MG</option>
+                                                <option id="pd" value="">LG</option>
+                                                <option id="pd" value="">Other</option>
+                                            </select>
+                                        </td>
+                                        <td style="background-color: rgb(0, 255, 0);color: black;">Result Total</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: rgb(3, 3, 95);color: white;"> Ratio (%)</td>
+                                        <td><input id="ra" type="text" size="2.5" value="100" readonly="readonly"
+                                                onchange="calculate_f3(); ratio();"></td>
+                                        <td><input id="rb" type="text" size="2.5" value="" readonly="readonly"
+                                                onchange="calculate_f3(); ratio();"></td>
+                                        <td><input id="rc" type="text" size="2.5" value="" readonly="readonly"
+                                                onchange="calculate_f3(); ratio();"></td>
+                                        <td><input id="rd" type="text" size="2.5" value="" readonly="readonly"
+                                                onchange="calculate_f3(); ratio();"></td>
+                                        <td style="background-color: rgb(0, 255, 0);"><input id="rr" type="text"
+                                                size="2.5" value="" readonly="readonly"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: rgb(3, 3, 95);color: white;">FeT (%)</td>
+                                        <td><input id="fa" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td><input id="fb" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td><input id="fc" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td><input id="fd" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td style="background-color: rgb(0, 255, 0);"><input id="fr" type="text"
+                                                size="2.5" value="" readonly="readonly"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: rgb(3, 3, 95);color: white;">Al2O3 (%)</td>
+                                        <td><input id="aa" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td><input id="ab" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td><input id="ac" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td><input id="ad" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td style="background-color: rgb(0, 255, 0);"><input id="ar" type="text"
+                                                size="2.5" value="" readonly="readonly"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: rgb(3, 3, 95);color: white;">SiO2 (%)</td>
+                                        <td><input id="sa" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td><input id="sb" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td><input id="sc" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td><input id="sd" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td style="background-color: rgb(0, 255, 0);"><input id="sr" type="text"
+                                                size="2.5" value="" readonly="readonly"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color: rgb(3, 3, 95);color: white;">Others (%)</td>
+                                        <td><input id="oa" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td><input id="ob" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td><input id="oc" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td><input id="od" type="text" size="2.5" value="" onchange="calculate_f3()">
+                                        </td>
+                                        <td style="background-color: rgb(0, 255, 0);"><input id="or" type="text"
+                                                size="2.5" value="" readonly="readonly"></td>
+                                    </tr>
+                                    <tr style="background-color: rgb(0, 255, 0);color: black;">
+                                        <td>Feed (TPH)</td>
+                                        <td><input id="ta" type="text" size="2.5" value="" readonly="readonly"></td>
+                                        <td><input id="tb" type="text" size="2.5" value="" readonly="readonly"></td>
+                                        <td><input id="tc" type="text" size="2.5" value="" readonly="readonly"></td>
+                                        <td><input id="td" type="text" size="2.5" value="" readonly="readonly"></td>
+                                        <td><input id="tr" type="text" size="2.5" value="" readonly="readonly"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="center" colspan="6"><input type="button" onclick="formReset3()"
+                                                value="Reset"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <div class="tumbnil1">
+                        <img src="img/f4.png" alt="stockpile">
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore
+                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                    ea commodo
+                    consequat.</p>
+            </div>
+        </div>
+    </section>
+    <hr>
+    <section id="team" class="section left">
+        <div class="para1">
+            <p class="bigtext">Our Team</p>
+            <p class="smltext subline">We are a very effective team of beneficiation Plant. we're committed to achieve
+                our production Target with best quality. We understand how to navigate our production line circuit to
+                process the large variety of Iron ore.</p>
+        </div>
+        <div class="tumbnil">
+            <img src="img/team.jpg" alt="calculation">
+        </div>
+    </section>
+    <section class="section">
+        <div class="para1">
+            <p class="bigtext">Our Plant</p>
+            <p class="smltext subline">Bhushan Power & Steel Limited (BPSL), is a fully integrated 3.5 Million TPA Steel
+                Making Company having turnover of INR 11,288 Crores (USD 1,858 Million) FY14. The Company have
+                successfully commissioned a 3.5 Million TPA Greenfield Steel and Power Plant in Orissa with HR Coil
+                making facility - First in Private Sector in the State of Orissa. For this plant, technology and
+                equipments were sourced from leading world-renowned companies viz., Lurgi, ABB Ltd., SMS Siemag, SMS
+                Meer Danieli, LOI Tenova, Kocks etc. BPSL has a wide marketing network in both India (comprising 35
+                sales offices) and abroad for selling its value added product range.</p>
+        </div>
+        <div class="tumbnil">
+            <img src="img/plant.jpg" alt="calculation">
+        </div>
+    </section>
+    <hr>
+    <section id="contact" class="contact">
+        <h1 class="test-center">Contact Us</h1>
+        <div class="form">
+            <input class="form-input" type="text" name="name" id="name" placeholder="Enter Your Name">
+            <input class="form-input" type="text" name="name" id="email" placeholder="Enter Your Email-ID">
+            <textarea class="form-input" name="name" id="concern" cols="30" rows="10"
+                placeholder="Enter Your Feedback and concern"></textarea>
+            <button id="websend" class="btn btn-dark">Submit</button>
+        </div>
+    </section>
+    <section id="aftrsmt" class="aftcont">
+        <h2>Your Concern has been submitted to Manish Bhardwaj.</h2>
+    </section>
+    <footer class="background">
+        <p class="text-footer">
+            Copyright &copy; Manish Bhardwaj - All right reserved
+        </p>
+    </footer>
+
+    <script src="js/resp.js"></script>
+</body>
+
+</html>
