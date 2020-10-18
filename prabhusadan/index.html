@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRABHU SADAN</title>
+</head>
+
+<body>
+    Name <input id="namebox" type="text"><br> Roll No. <input id="rollbox" type="text"><br> Section <input id="secbox" type="text"><br> Gender <input id="genbox" type="text"><br>
+
+    <button id="insert">INSERT</button>
+    <button id="select">SELECT</button>
+    <button id="update">UPDATE</button>
+    <button id="delete">DELETE</button>
+    <h1 id="ESP32">String from Firebase</h1>
+    Control <input id="control" type="text"><br>
+    <button id="change">CHANGE</button>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBXHNrYVH4ooYNQ92X6bhfoNca2CSgB7uU",
+            authDomain: "test-f78c1.firebaseapp.com",
+            databaseURL: "https://test-f78c1.firebaseio.com",
+            projectId: "test-f78c1",
+            storageBucket: "test-f78c1.appspot.com",
+            messagingSenderId: "633282549584",
+            appId: "1:633282549584:web:8761eca12b290f180b3e55"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var namev, rollv, secv, genv;
+
+        function Ready() {
+            namev = document.getElementById('namebox').value;
+            rollv = document.getElementById('rollbox').value;
+            secv = document.getElementById('secbox').value;
+            genv = document.getElementById('genbox').value;
+            controlv = document.getElementById('control').value;
+        }
+
+        document.getElementById('insert').onclick = function() {
+            Ready();
+            firebase.database().ref('student/' + rollv).set({
+                Nameofstudent: namev,
+                RollNo: rollv,
+                section: secv,
+                Gender: genv
+            });
+        }
+
+        document.getElementById('change').onclick = function() {
+            Ready();
+            firebase.database().ref().update({
+                Control: controlv
+            });
+        }
+
+        var rcv = document.getElementById('ESP32');
+        firebase.database().ref('/New ESP String').on('value', snapshot => rcv.innerText = snapshot.val());
+    </script>
+
+
+
+</body>
+
+</html>
