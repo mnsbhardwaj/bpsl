@@ -21,13 +21,14 @@
                     <div class="percent">
                         <svg>
                         <circle cx="70" cy="70" r="70"></circle>
-                        <circle cx="70" cy="70" r="70"></circle>
+                        <circle id="tempg" cx="70" cy="70" r="70"></circle>
                     </svg>
                         <div class="number">
-                            <h2>90<span>%</span></h2>
+                            <label id="tempv" class="c111">--</label>
+                            <label class="c222">°C</label>
                         </div>
                     </div>
-                    <h2 class="text">HTML</h2>
+                    <h2 class="text">Temperature</h2>
                 </div>
             </div>
             <div class="card">
@@ -35,13 +36,14 @@
                     <div class="percent">
                         <svg>
                         <circle cx="70" cy="70" r="70"></circle>
-                        <circle cx="70" cy="70" r="70"></circle>
+                        <circle id="humdg" cx="70" cy="70" r="70"></circle>
                     </svg>
                         <div class="number">
-                            <h2>85<span>%</span></h2>
+                            <label id="humdv" class="c111">--</label>
+                            <label class="c222">%</label>
                         </div>
                     </div>
-                    <h2 class="text">CSS</h2>
+                    <h2 class="text">Humidity</h2>
                 </div>
             </div>
             <div class="card">
@@ -49,13 +51,14 @@
                     <div class="percent">
                         <svg>
                         <circle cx="70" cy="70" r="70"></circle>
-                        <circle cx="70" cy="70" r="70"></circle>
+                        <circle id="lvlg" cx="70" cy="70" r="70"></circle>
                     </svg>
                         <div class="number">
-                            <h2>20<span>%</span></h2>
+                            <label id="lvlv" class="c111">--</label>
+                            <label class="c222">%</label>
                         </div>
                     </div>
-                    <h2 class="text">JSS</h2>
+                    <h2 class="text">Tank Level</h2>
                 </div>
             </div>
         </div>
@@ -68,7 +71,10 @@
     <button id="update">UPDATE</button>
     <button id="delete">DELETE</button>
     <h1 id="ESP32">String from Firebase</h1>
-    Control <input id="control" type="text"><br>
+    <h3 id="temp">TEMP<span>%</span></h3>
+    <label id="temp1">temperature </label>
+    <label id="11">second</label>
+    <label id="112">second</label> Control <input id="control" type="text"><br>
     <button id="change">CHANGE</button>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -92,7 +98,7 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-        var namev, rollv, secv, genv;
+        var namev, rollv, secv, genv, firercv;
 
         function Ready() {
             namev = document.getElementById('namebox').value;
@@ -119,8 +125,20 @@
             });
         }
 
-        var rcv = document.getElementById('ESP32');
-        firebase.database().ref('/New ESP String').on('value', snapshot => rcv.innerText = snapshot.val());
+        firebase.database().ref('/New ESP String').on('value', function(snapshot) {
+            rcv = snapshot.val();
+            document.getElementById('ESP32').innerText = rcv;
+            firercv = rcv.split(".");
+            document.getElementById('temp').innerText = firercv[10];
+            document.getElementById('temp1').innerText = firercv[1];
+            document.getElementById("tempv").innerText = firercv[0];
+            document.getElementById("humdv").innerText = firercv[1];
+            document.getElementById("lvlv").innerText = firercv[2];
+            document.getElementById("tempg").style.strokeDashoffset = (440 - (440 * firercv[0]) / 100);
+            document.getElementById("humdg").style.strokeDashoffset = (440 - (440 * firercv[1]) / 100);
+            document.getElementById("lvlg").style.strokeDashoffset = (440 - (440 * firercv[2]) / 100);
+
+        });
     </script>
 
 
