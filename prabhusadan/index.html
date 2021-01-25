@@ -8,12 +8,41 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>PRABHU SADAN
+<body>
+    <nav class="navbar background h-nav-res">
+        <ul class="navlist v-class-res">
+            <div class="logo">
+                <img src="img/logo.jpg" alt="bpsl">
+                <img src="img/logo1.png" alt="manish">
+            </div>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#calculation">Switch</a></li>
+            <li><a href="#team">My Family</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <div class="rightnav v-class-res">
+            <input type="text" name="search" id="search">
+            <button class="btn btn-sm">Search</button>
+        </div>
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+    <div>PRABHU SADAN</div>
     <br>
     <br>
     <div class="center">
         <input type="checkbox" id="sw1">
+        <input type="checkbox" id="sw2">
+        <input type="checkbox" id="sw3">
     </div>
+    <div class="neonbtn">
+        <div class="nbutton">Neon Glowing</div>
+        <div class="nbutton fill-n">Neon Fill</div>
+    </div>
+
     <br>
 
     <br>
@@ -94,6 +123,8 @@
     <button id="update">UPDATE</button>
     <button id="delete">DELETE</button>
     <h1 id="ESP32">String from Firebase</h1>
+    <h1 id="controler">switch for Firebase</h1>
+    <h2 id="motor1">Motor</h2>
     <h3 id="temp">TEMP<span>%</span></h3>
     <label id="temp1">temperature </label>
     <label id="11">second</label>
@@ -160,6 +191,14 @@
             document.getElementById("tempg").style.strokeDashoffset = (440 - (440 * firercv[0]) / 100);
             document.getElementById("humdg").style.strokeDashoffset = (440 - (440 * firercv[1]) / 100);
             document.getElementById("lvlg").style.strokeDashoffset = (440 - (440 * firercv[2]) / 100);
+
+        });
+
+        firebase.database().ref('/Control').on('value', function(snapshot) {
+            rcv1 = snapshot.val();
+            document.getElementById('controler').innerText = rcv1;
+            document.getElementById('motor1').innerText = rcv1[0];
+
 
         });
     </script>
